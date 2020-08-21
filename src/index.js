@@ -12,6 +12,7 @@ import {
 import {Card, Divider} from 'react-native-elements';
 import Geolocation from '@react-native-community/geolocation';
 import axios from 'axios';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as env from './services/pageBase';
 import ThemeContext from './context/ThemeContext';
 
@@ -152,6 +153,9 @@ function App() {
     viewNotes: {
       alignItems: 'flex-end',
     },
+    icon: {
+      color: darkTheme ? '#000' : '#F2F2F2',
+    },
   });
 
   async function setCurrentWeather() {
@@ -267,7 +271,10 @@ function App() {
                   {weather['weather'][0]['description']}
                 </Text>
                 <Text style={styles.notes}>
-                  {Math.round(weather['main']['temp_max'] * 10) / 10} &#186; /{' '}
+                  <Icon name="arrow-up-thick" size={20} style={styles.icon} />
+                  {Math.round(weather['main']['temp_max'] * 10) /
+                    10} &#186;{' '}
+                  <Icon name="arrow-down-thick" size={20} style={styles.icon} />
                   {Math.round(weather['main']['temp_min'] * 10) / 10} &#186;
                 </Text>
               </View>
